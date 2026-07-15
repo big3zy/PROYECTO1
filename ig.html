@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta importante</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .botones {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        #btnSi {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        #btnSi:hover {
+            background-color: #27ae60;
+        }
+
+        #btnNo {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #btnNo:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="pregunta">¿Me pasas tu Insta? ✨</h1>
+
+    <div class="botones">
+        <button id="btnSi" onclick="aceptar()">¡Sí!</button>
+        <button id="btnNo" onclick="dijoNo()">No</button>
+    </div>
+
+    <script>
+        // Cambia este usuario por el tuyo
+        const tuUsuarioInstagram = "big_3zy";
+
+        let intentosNo = 0;
+
+        function aceptar() {
+            const pregunta = document.getElementById("pregunta");
+
+            pregunta.innerText = "¡Sabía que dirías que sí! Redireccionando... 😉";
+
+            setTimeout(() => {
+                window.location.href = `https://instagram.com/${tuUsuarioInstagram}`;
+            }, 2000);
+        }
+
+        function dijoNo() {
+            intentosNo++;
+
+            const pregunta = document.getElementById("pregunta");
+            const btnSi = document.getElementById("btnSi");
+            const btnNo = document.getElementById("btnNo");
+
+            if (intentosNo === 1) {
+                pregunta.innerText = "¿Estás segura? Creo que tu pantalla está fallando... 😜";
+                btnSi.style.transform = "scale(1.3)";
+            } 
+            else if (intentosNo === 2) {
+                pregunta.innerText = "¡Intenta con el botón verde de al lado! El rojo no funciona bien en este cel. 😂";
+                btnSi.style.transform = "scale(1.6)";
+            } 
+            else {
+                pregunta.innerText = "Bueno, ya no hay botón de No. ¡Dale al Sí! 😂";
+                btnNo.style.display = "none";
+                btnSi.style.transform = "scale(2)";
+            }
+        }
+    </script>
+
+</body>
+</html>
